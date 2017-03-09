@@ -2,17 +2,18 @@
 {
   "name": "Call Transfer Demo App",
   "description": "Example of call transfer",
-  "repository": "https://github.com/nexmo-community/click2call",
+  "repository": "https://github.com/nexmo-community/voice-call-transfer",
   "logo": "https://avatars0.githubusercontent.com/u/551057?v=3&s=200",
   "env": {
+    "NAME": {
+        "description": "The Heroku app name, enter it exactly the same as you have above",
+         "value": ""
+    },  
     "CREATE_NEXMO_APP": {
       "description": "Should the application automatically create a nexmo application and purchase a new phone number",
       "value": "yes"
     },
-    "NAME": {
-      "description": "The Heroku app name, enter it exactly the same as you have above",
-       "value": ""
-    },
+    
     "API_KEY": {
       "description": "Your Nexmo API Key",
       "value": "",
