@@ -5,7 +5,7 @@ When users call your Nexmo number they will be places on hold and the call will 
 
 You can test out your own copy of this right now on heroku by clicking this button.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/nexmo-community/click2call)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)]
 
 This will launch the heroku installer console, you will be asked to enter a name for your app (we need this twice) something like "FredsCallTransfer".
 It will also ask you to enter your number where you want callers to be connected to, enter your number in internatonal format without the + eg `447790900123` 
