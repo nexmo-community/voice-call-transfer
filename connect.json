@@ -1,0 +1,15 @@
+[
+    {
+    	"action": "talk",
+    	"text": "Please hold while we connect you"
+    },
+    {
+    	"action": "connect",
+    	"eventUrl": ["https://sammachin.ngrok.io/event"],
+    	"from": "447520616161",
+    	"endpoint": [{
+    		"type": "phone",
+    		"number": "{{dest}}"
+    	}]
+    }
+]

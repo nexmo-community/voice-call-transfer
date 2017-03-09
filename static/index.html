@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<title>Nexmo Call Transfer Demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+
+<style>
+  body {
+    background: #f9fbfd;
+    color: #224E66;
+  }
+
+  h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    margin-left: 10px;
+  }
+
+  img {
+    margin: auto;
+    display: block;
+  }
+
+  footer {
+    text-align: center;
+  }
+  
+  #text div {
+	  margin-bottom: 10px;
+  }
+</style>
+
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <img src="/static/logo.png" height="100" alt="">
+        <br>
+        <header>
+        <h1>Call Transfer Demo</h1>
+        <h2>Call {{my_lvn}}</h2>
+        </header>
+        <hr>
+        <div id='text'>
+        </div>
+        <hr>
+        <footer>
+        Powered by The <a href="https://nexmo.com" target="_blank">Nexmo</a> Voice API
+        </footer>
+</div></div></div>
+<script>
+var ws
+var callcount = 0;
+function connect() {
+	ws = new WebSocket("wss://{{hostname}}/socket");
+	ws.onopen = function() {
+		console.log("CONNECTED");
+        textdiv = document.createElement("div");
+    	textdiv.textContent = "Connected";
+    	document.getElementById('text').appendChild(textdiv);
+	};
+	ws.onmessage = function(event) {
+		eventRecieved(JSON.parse(event.data));
+	};
+}
+
+function eventRecieved(data){
+	callcount++;
+	console.log(data);
+    callid = data['uuid']
+    console.log(callid)
+    textdiv = document.createElement("div");
+    textdiv.setAttribute("id", callid);
+	textdiv.textContent = "Caller " + callcount + "  ends "+data['from'].slice(9,13) + " ";
+    btn = document.createElement("button");
+    btn.innerHTML="Transfer to Me";
+    btn.classList.add('btn');
+    btn.classList.add('btn-primary');
+    btn.classList.add('btn-sm');
+    btn.onclick = function(){transfer(callid)};
+    textdiv.appendChild(btn);
+	document.getElementById('text').appendChild(textdiv);
+}
+
+
+function transfer(callid){
+    data = {action: "transfer", callid: callid}
+    console.log(data)
+    ws.send(JSON.stringify(data))
+    var element = document.getElementById(callid);
+    element.parentNode.removeChild(element);
+}
+
+document.addEventListener("DOMContentLoaded", function(event) {
+	connect();
+});
+
+</script>
+</body>
+</html>

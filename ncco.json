@@ -1,0 +1,11 @@
+[
+	{
+		"action": "talk",
+		"text": "Hello, Please hold someone will be with you shortly"
+	},
+	{
+		"action": "stream",
+		"streamUrl": ["https://{{hostname}}/static/connected.wav"],
+        "loop" : 0
+	}
+]
