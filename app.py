@@ -5,7 +5,6 @@ import tornado.web
 import tornado.websocket
 import nexmo
 import requests
-from config import *
 import json
 import phonenumbers
 
