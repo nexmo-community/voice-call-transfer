@@ -61,11 +61,14 @@ class MainHandler(tornado.web.RequestHandler):
 class CallHandler(tornado.web.RequestHandler):
 	@tornado.web.asynchronous
 	def get(self):
-		with open('ncco.json') as f:
-			ncco = json.loads(f.read())
-		self.write(json.dumps(ncco))
-		self.set_header("Content-Type", 'application/json; charset="utf-8"')
-		self.finish()
+        def get(self):
+            t = tornado.template.Loader(".").load("ncco.json")
+            dest = self.get_argument("dest", None)
+            self.set_header("Content-Type", 'application/json')
+            self.write(t.generate(
+                hostname = HOSTNAME,
+            ))
+            self.finish()
 
 class TransferHandler(tornado.web.RequestHandler):
     @tornado.web.asynchronous
@@ -101,7 +104,7 @@ class BrowserWSHandler(tornado.websocket.WebSocketHandler):
         print message
         data = json.loads(message)
         if data['action'] == 'transfer':
-            transfer(data['callid'], data['dest'])
+            transfer(data['callid'])
     def on_close(self):
         print("Browser Client Disconnected")
         clients.remove(self)
