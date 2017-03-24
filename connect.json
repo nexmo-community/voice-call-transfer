@@ -5,7 +5,7 @@
     },
     {
     	"action": "connect",
-    	"eventUrl": ["https://example.com/event"],
+    	"eventUrl": ["https://{{hostname}}/event"],
     	"from": "{{my_lvn}}",
     	"endpoint": [{
     		"type": "phone",
