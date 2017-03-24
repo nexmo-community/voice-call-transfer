@@ -5,8 +5,8 @@
     },
     {
     	"action": "connect",
-    	"eventUrl": ["https://sammachin.ngrok.io/event"],
-    	"from": "447520616161",
+    	"eventUrl": ["https://example.com/event"],
+    	"from": "{{my_lvn}}",
     	"endpoint": [{
     		"type": "phone",
     		"number": "{{dest}}"
