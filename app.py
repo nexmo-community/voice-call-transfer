@@ -19,7 +19,7 @@ else:
     HOSTNAME = os.environ['URL']
 APP_ID = os.environ['APP_ID'] # Application ID returned by the nexmo cli when you create the applicaiton
 try:
-    private_key = os.environ['PRIVATE_KEY']
+    PRIVATE_KEY = os.environ['PRIVATE_KEY']
 except:
     with open('private.key', 'r') as f:
         PRIVATE_KEY = f.read()
