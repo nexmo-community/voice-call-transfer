@@ -60,7 +60,6 @@ class MainHandler(tornado.web.RequestHandler):
 
 class CallHandler(tornado.web.RequestHandler):
 	@tornado.web.asynchronous
-	def get(self):
         def get(self):
             t = tornado.template.Loader(".").load("ncco.json")
             dest = self.get_argument("dest", None)
