@@ -78,7 +78,7 @@ class TransferHandler(tornado.web.RequestHandler):
         self.write(t.generate(
             dest = dest,
             hostname = HOSTNAME,
-	    my_lvn = MY_LVN
+	    my_lvn = MYLVN
         ))
         self.finish()
 
