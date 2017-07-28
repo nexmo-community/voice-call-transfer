@@ -87,7 +87,6 @@ class EventHandler(tornado.web.RequestHandler):
     @tornado.web.asynchronous
     def post(self):
         data = json.loads(self.request.body)
-        print data
         if data['status'] == "answered" and data['direction'] =='inbound':
             broadcast(data)
         self.content_type = 'text/plain'
@@ -97,23 +96,18 @@ class EventHandler(tornado.web.RequestHandler):
 
 class BrowserWSHandler(tornado.websocket.WebSocketHandler):
     def open(self):
-        print("Browser Client Connected")
         clients.append(self)
     def on_message(self, message):
-        print("Browser Client Message Recieved")
-        print message
         data = json.loads(message)
         if data['action'] == 'transfer':
             transfer(data['callid'])
     def on_close(self):
-        print("Browser Client Disconnected")
         clients.remove(self)
 
 
 				
 def main():
 	static_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
-	print static_path
 	application = tornado.web.Application([(r"/", MainHandler),
 											(r"/event", EventHandler),
 											(r"/ncco", CallHandler),
